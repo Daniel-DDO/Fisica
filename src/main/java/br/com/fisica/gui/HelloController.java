@@ -1,4 +1,4 @@
-package br.com.fisica.basicas;
+package br.com.fisica.gui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

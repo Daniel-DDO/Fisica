@@ -1,5 +1,6 @@
-package br.com.fisica.basicas;
+package br.com.fisica.gui;
 
+import br.com.fisica.basicas.Circuito;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
