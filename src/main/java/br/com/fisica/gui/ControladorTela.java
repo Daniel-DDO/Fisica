@@ -1,5 +1,6 @@
 package br.com.fisica.gui;
 
+import br.com.fisica.basicas.Circuito;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,6 +24,7 @@ public class ControladorTela implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         inicializarCbox();
+        naoExibirLabelField();
     }
 
     private static ControladorTela instancia;
@@ -59,9 +61,31 @@ public class ControladorTela implements Initializable {
     @FXML
     private TextField resistenciaField;
 
+    @FXML
+    private Button calcularButton;
+
+    @FXML
+    private TextField ddpAmplitudeField;
+
+    @FXML
+    private TextField frequenciaField;
+
+    @FXML
+    private Label labelDdpAmplitude;
+
+    @FXML
+    private Label labelFrequencia;
+
     public void inicializarCbox() {
         cboxSelecionarFonte.getItems().add("Corrente Contínua (CC)");
         cboxSelecionarFonte.getItems().add("Corrente Alternada (CA)");
+    }
+
+    public void naoExibirLabelField() {
+        labelDdpAmplitude.setVisible(false);
+        ddpAmplitudeField.setVisible(false);
+        labelFrequencia.setVisible(false);
+        frequenciaField.setVisible(false);
     }
 
     public void selecionarCircuito() {
@@ -69,18 +93,73 @@ public class ControladorTela implements Initializable {
             if (cboxSelecionarFonte.getValue().equals("Corrente Contínua (CC)")) {
                 imageViewCircuito.setImage(circuitoCContinua);
                 atualFonteLabel.setText("Selecionado: Corrente Contínua (CC)");
-                System.out.println("continua");
+
+                labelDdpAmplitude.setVisible(true);
+                labelDdpAmplitude.setText("DDP:");
+                ddpAmplitudeField.setVisible(true);
+                ddpAmplitudeField.setPromptText("Digite a DDP: ");
+                labelFrequencia.setVisible(false);
+                frequenciaField.setVisible(false);
+
             } else if (cboxSelecionarFonte.getValue().equals("Corrente Alternada (CA)")) {
                 imageViewCircuito.setImage(circuitoCAlternada);
                 atualFonteLabel.setText("Selecionado: Corrente Alternada (CA)");
-                System.out.println("alternada");
+
+                labelDdpAmplitude.setVisible(true);
+                labelDdpAmplitude.setText("Amplitude:");
+                ddpAmplitudeField.setVisible(true);
+                ddpAmplitudeField.setPromptText("Digite a amplitude: ");
+                labelFrequencia.setVisible(true);
+                frequenciaField.setVisible(true);
             }
         }
     }
 
     @FXML
-    void buttonConfirmarFonte(ActionEvent event) {
+    public boolean verificandoFields() {
+        if (resistenciaField.getText() == null || resistenciaField.getText().isEmpty()) {
+            ControladorAlertas.alertaErro("Erro", "Digite a resistência.");
+            return false;
+        } else if (indutanciaField.getText() == null || indutanciaField.getText().isEmpty()) {
+            ControladorAlertas.alertaErro("Erro", "Digite a indutância.");
+            return false;
+        } else if (capacitanciaField.getText() == null || capacitanciaField.getText().isEmpty()) {
+            ControladorAlertas.alertaErro("Erro", "Digite a capacitância.");
+            return false;
+        }
+        return true;
+    }
+
+    @FXML
+    public void buttonConfirmarFonte(ActionEvent event) {
         selecionarCircuito();
+    }
+
+    @FXML
+    public void buttonCalcular(ActionEvent event) {
+        if (cboxSelecionarFonte.getValue() == null) {
+            ControladorAlertas.alertaErro("Erro", "Selecione qual será a fonte do circuito.");
+        } else {
+            if (cboxSelecionarFonte.getValue().equals("Corrente Contínua (CC)")) {
+                circuitoCContinua();
+            } else {
+                circuitoCAlternada();
+            }
+        }
+    }
+
+    @FXML
+    public void circuitoCContinua() {
+        if (verificandoFields()) {
+            System.out.println("oii");
+        }
+    }
+
+    @FXML
+    public void circuitoCAlternada() {
+        if (verificandoFields()) {
+
+        }
     }
 
 }
