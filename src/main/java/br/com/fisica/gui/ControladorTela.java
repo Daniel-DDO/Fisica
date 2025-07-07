@@ -4,10 +4,7 @@ import br.com.fisica.basicas.Circuito;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -25,6 +22,23 @@ public class ControladorTela implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         inicializarCbox();
         naoExibirLabelField();
+
+        apenasNumeros(resistenciaField);
+        apenasNumeros(indutanciaField);
+        apenasNumeros(capacitanciaField);
+        apenasNumeros(ddpAmplitudeField);
+        apenasNumeros(frequenciaField);
+
+    }
+
+    public void apenasNumeros(TextField field) {
+        field.setTextFormatter(new TextFormatter<>(change -> {String texto = change.getControlNewText();
+            if (texto.matches("\\d*([\\.]?\\d*)?")) {
+                return change;
+            } else {
+                return null;
+            }
+        }));
     }
 
     private static ControladorTela instancia;
@@ -135,9 +149,12 @@ public class ControladorTela implements Initializable {
 
     @FXML
     public void buttonConfirmarFonte(ActionEvent event) {
-        selecionarCircuito();
+        if (cboxSelecionarFonte.getValue() == null || cboxSelecionarFonte.getValue().isEmpty()) {
+            ControladorAlertas.alertaErro("Erro", "Selecione uma fonte.");
+        } else {
+            selecionarCircuito();
+        }
     }
-
     @FXML
     public void buttonCalcular(ActionEvent event) {
         if (cboxSelecionarFonte.getValue() == null) {
@@ -154,7 +171,13 @@ public class ControladorTela implements Initializable {
     @FXML
     public void circuitoCContinua() {
         if (verificandoFields()) {
-            System.out.println("oii");
+
+            double resistencia = Double.parseDouble(resistenciaField.getText());
+            double indutancia = Double.parseDouble(indutanciaField.getText());
+            double capacitancia = Double.parseDouble(capacitanciaField.getText());
+            double ddp = Double.parseDouble(ddpAmplitudeField.getText());
+
+            Circuito circuito = new Circuito(resistencia, indutancia, capacitancia, true, ddp);
         }
     }
 
@@ -162,6 +185,13 @@ public class ControladorTela implements Initializable {
     public void circuitoCAlternada() {
         if (verificandoFields()) {
 
+            double resistencia = Double.parseDouble(resistenciaField.getText());
+            double indutancia = Double.parseDouble(indutanciaField.getText());
+            double capacitancia = Double.parseDouble(capacitanciaField.getText());
+            double amplitude = Double.parseDouble(ddpAmplitudeField.getText());
+            double frequencia = Double.parseDouble(frequenciaField.getText());
+
+            Circuito circuito = new Circuito(resistencia, indutancia, capacitancia, false, amplitude, frequencia);
         }
     }
 

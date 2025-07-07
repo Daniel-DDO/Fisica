@@ -28,4 +28,24 @@ public class Circuito {
         this.amplitudeFonte = amplitudeFonte;
         this.frequenciaFonte = frequenciaFonte;
     }
+
+    //Construtor para corrente contínua
+    public Circuito(double resistor, double indutor, double capacitor, boolean correnteContinua, double ddp) {
+        this.resistor = resistor;
+        this.indutor = indutor;
+        this.capacitor = capacitor;
+        this.correnteContinua = correnteContinua;
+        this.ddp = ddp;
+    }
+
+    //Construtor para corrente alternada
+    public Circuito(double resistor, double indutor, double capacitor, boolean correnteContinua, double amplitudeFonte, double frequenciaFonte) {
+        this.resistor = resistor;
+        this.indutor = indutor;
+        this.capacitor = capacitor;
+        this.correnteContinua = correnteContinua;
+        this.amplitudeFonte = amplitudeFonte;
+        this.frequenciaFonte = frequenciaFonte;
+    }
+
 }
