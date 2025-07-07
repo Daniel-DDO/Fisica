@@ -86,6 +86,7 @@ public class ControladorTela implements Initializable {
         ddpAmplitudeField.setVisible(false);
         labelFrequencia.setVisible(false);
         frequenciaField.setVisible(false);
+        calcularButton.setVisible(false);
     }
 
     public void selecionarCircuito() {
@@ -94,6 +95,7 @@ public class ControladorTela implements Initializable {
                 imageViewCircuito.setImage(circuitoCContinua);
                 atualFonteLabel.setText("Selecionado: Corrente Contínua (CC)");
 
+                calcularButton.setVisible(true);
                 labelDdpAmplitude.setVisible(true);
                 labelDdpAmplitude.setText("DDP:");
                 ddpAmplitudeField.setVisible(true);
@@ -105,6 +107,7 @@ public class ControladorTela implements Initializable {
                 imageViewCircuito.setImage(circuitoCAlternada);
                 atualFonteLabel.setText("Selecionado: Corrente Alternada (CA)");
 
+                calcularButton.setVisible(true);
                 labelDdpAmplitude.setVisible(true);
                 labelDdpAmplitude.setText("Amplitude:");
                 ddpAmplitudeField.setVisible(true);
