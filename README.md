@@ -9,7 +9,7 @@ Projeto - Física Aplicada à Computação 2025.1
 - Danilo de Pádua Walfrido Aguiar
 - Giovanna Neves de Lima
 - Heitor Carvalho Santana
-- João Ricardo 
+- João Ricardo de Andrade Ferreira Barbosa 
 
 ## Descrição:
 
