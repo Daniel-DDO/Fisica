@@ -7,6 +7,9 @@ Projeto - Física Aplicada à Computação 2025.1
 - Daniel Dionísio de Oliveira
 - Daniel Feitosa de Lima
 - Danilo de Pádua Walfrido Aguiar
+- Giovanna Neves de Lima
+- Heitor Carvalho Santana
+- João Ricardo 
 
 ## Descrição:
 
