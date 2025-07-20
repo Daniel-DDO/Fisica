@@ -1,0 +1,7 @@
+br\com\fisica\basicas\Circuito.class
+br\com\fisica\controller\SimuladorRLC$1.class
+br\com\fisica\gui\Main.class
+module-info.class
+br\com\fisica\gui\ControladorAlertas.class
+br\com\fisica\gui\ControladorTela.class
+br\com\fisica\controller\SimuladorRLC.class
